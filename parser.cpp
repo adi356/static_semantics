@@ -39,14 +39,14 @@ node *Program(Scanner *scanner){
 
     if (tk.value != "xopen") {
         error("xopen");
-	}
+    }
     tk = (*scanner).getNext();
 
     node-> child2 = Stats(scanner);
 
     if (tk.value != "xclose") {
         error("xclose");
-	}
+    }
     tk = (*scanner).getNext();
 
     return node;
@@ -68,19 +68,19 @@ node *VarList(Scanner *scanner){
 
     if (tk.type != "IDENTIFIER") {
         error("IDENTIFIER");    
-	}
+    }
     node-> tk1 = tk;
     tk = (*scanner).getNext();
 
     if (tk.value != ":") {
         error("COLON");
-	}
+    }
     node-> tk2 = tk;
     tk = (*scanner).getNext(); 
     
     if (tk.type != "INTEGER") {
         error("INTEGER");
-	}
+    }
     node-> tk3 = tk;
     tk = (*scanner).getNext();
 
@@ -139,9 +139,10 @@ node *N(Scanner *scanner){
         if (tk.value == "-"){    // <R> - <N> case
             node-> tk1 = tk;
             tk = (*scanner).getNext();
-            node-> child1 = N(scanner); 
+            node-> child2 = N(scanner); 
         } 
     }
+
     return node;
 }
 
@@ -156,10 +157,12 @@ node *R(Scanner *scanner){
             error(")");        
     } else if (tk.type != "IDENTIFIER" && tk.type != "INTEGER") {
         error("IDENTIFIER OR INTEGER");
-	} else {
+        //! come back to
+    }else {
         node->tk1 = tk;
+    }
         tk = (*scanner).getNext();  
-	}
+    
     return node;
 }
 
@@ -175,7 +178,7 @@ node *Stats(Scanner *scanner){
 node *Mstat(Scanner *scanner){   // I think this code is good but too early to test
     node *node = createNode(MSTATn);
     if (tk.value == "xin" || tk.value == "xout" || tk.value == "{" || 
-    tk.value == "xcond" || tk.value == "xloop" || tk.value == "xlet") {
+    tk.value == "xcond" || tk.value == "xloop" || tk.value == "xlet"){
         node-> child1 = Stat(scanner);
         node-> child2 = Mstat(scanner);   
     }
@@ -207,6 +210,7 @@ node *Stat(Scanner *scanner){
     } else {
         error("xin or xout or { or xcond or xloop or xlet");
     }  
+
     return node;
 }
 
@@ -219,32 +223,32 @@ node *Block(Scanner *scanner){
 
     if(tk.value != "}") {
         error("}");
-	}
+    }
     tk = (*scanner).getNext();
 
     return node;
-} 
+}
 
 // <in> -> xin >> identifier; 
-
 node *In(Scanner *scanner){
     node *node = createNode(INn);
 
     if (tk.value != ">>") {
         error(">>");    
-	}
+    }
     tk = (*scanner).getNext();
     
     if (tk.type != "IDENTIFIER") {
         error("IDENTIFIER");    
-	}
+    }
     node-> tk1 = tk;
     tk = (*scanner).getNext();
 
     if (tk.value != ";") {
         error(";");  
-	}
+    }
     tk = (*scanner).getNext();
+
     return node;
 }
 
@@ -254,15 +258,16 @@ node *Out(Scanner *scanner){
 
     if (tk.value != "<<") {
         error("<<"); 
-	}
+    }
     tk = (*scanner).getNext();
 
     node-> child1 = Exp(scanner);    // <EXP>
 
     if (tk.value != ";") {
         error(";");       
-	}  
+    }  
     tk = (*scanner).getNext();
+    
     return node;
 }
 
@@ -272,7 +277,7 @@ node *If(Scanner *scanner){
 
     if (tk.value != "[") {
         error("["); 
-	}
+    }
     tk = (*scanner).getNext();
 
     node-> child1 = Exp(scanner);
@@ -281,7 +286,7 @@ node *If(Scanner *scanner){
 
     if (tk.value != "]") {
         error("]"); 
-	}
+    }
     tk = (*scanner).getNext();
 
     node-> child4 = Stat(scanner);
@@ -293,9 +298,9 @@ node *If(Scanner *scanner){
 node *Loop(Scanner *scanner){
     node *node = createNode(LOOPn);
 
-    if (tk.value != "["){
+    if (tk.value != "[") {
         error("["); 
-	}
+    }
     tk = (*scanner).getNext();
 
     node-> child1 = Exp(scanner);
@@ -304,10 +309,11 @@ node *Loop(Scanner *scanner){
 
     if (tk.value != "]") {
         error("]"); 
-	}
+    }
     tk = (*scanner).getNext();
 
     node-> child4 = Stat(scanner);
+
     return node;
 }
 
@@ -316,8 +322,8 @@ node *Assign(Scanner *scanner){
     node *node = createNode(ASSIGNn);
 
     if (tk.type != "IDENTIFIER") {
-        error("IDENTIFIER");    
-	}
+       error("IDENTIFIER");    
+    }
     node-> tk1 = tk;
     tk = (*scanner).getNext();   
 
@@ -325,8 +331,9 @@ node *Assign(Scanner *scanner){
 
     if (tk.value != ";") {
         error(";"); 
-	}
+    }
     tk = (*scanner).getNext();
+
     return node;
 }
 
@@ -342,9 +349,10 @@ node *R0(Scanner *scanner){
 
     if (tk.value != "<" && tk.value != ">" && tk.value != "=" && tk.value != "%") {
         error("< or > or = or %");
-	}
+    }
     node-> tk1 = tk;
     tk = (*scanner).getNext();
+
     return node;
 }
 
