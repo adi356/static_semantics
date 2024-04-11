@@ -4,7 +4,7 @@ CPP_FLAGS = -std=c++11 -Wall
 
 TARGET = P3 
 
-CPP_FILES = main.cpp parser.cpp testTree.cpp
+CPP_FILES = main.cpp parser.cpp testTree.cpp staticSemantics.cpp nonTerms.cpp
 
 OBJ = $(CPP_FILES:.cpp=.o) 
 

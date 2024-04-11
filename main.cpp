@@ -8,6 +8,7 @@
 #include "scanner.h"
 #include "testTree.h" 
 #include "parser.h" 
+#include "staticSemantics.h"
 
 using namespace std; 
 
