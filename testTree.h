@@ -43,12 +43,4 @@ node * createNode(node_t label);
 void traversePreorder(node *n, int depth);
 void printNode(node *n, int depth);
 
-//! delete later
-//typedef enum {VAR, LABEL} nameType;
-// void insert(Scanner::Token tk, string label);
-// void verify(Scanner::Token tk, string label);
-// void staticSemantics(node *n, int depth);
-// static char *newName(nameType what);
-// void recGen(node *n, FILE *out);
-
 #endif

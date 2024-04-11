@@ -33,7 +33,7 @@ void staticSemantics(node *n, int depth) {
 		staticSemantics(n->child2, depth+1);
 		staticSemantics(n->child3, depth+1);
 		staticSemantics(n->child4, depth+1);
-		//return semanticError;
+		//return semanticsError;
 	}
 }
 
@@ -41,10 +41,10 @@ void staticSemantics(node *n, int depth) {
 void insert(Scanner::Token tk, string label){
 	if(tk.value != "" && tk.type == "IDENTIFIER" && label == "VARLIST"){
 		auto it = idList.find(tk.value);
-		if (it != idList.end()) {      	// Found in idList, throw detailed error msg       
+		if (it != idList.end()) {      	
         	std::cout << "SEMANTICAL ERROR: redefinition of " << tk.value;
 			std::cout << " on line " << tk.line << "\n";
-		} else {                       	// Not found in idList, add to idList		
+		} else {                     
 			idList.insert(tk.value);
 		}
 	}	
