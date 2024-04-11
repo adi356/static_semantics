@@ -59,5 +59,5 @@ void insert(Scanner::Token tk, string label){
 			std::cout << "SEMANTICS ERROR: use without declaration " << tk.value;
 			std::cout << " on line " << tk.line << "\n";
 		}
-	}
+	} 
  }
