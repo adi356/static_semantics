@@ -8,7 +8,7 @@
 #include <set>
 #include <stack>
 
-bool semanticsError = 0;
+bool semanticsError = false; 
 // needed for variable declarations
 std::set <string> idList;
 
@@ -58,6 +58,7 @@ void insert(Scanner::Token tk, string label){
 		if (it == idList.end()) {
 			std::cout << "SEMANTICS ERROR: use without declaration " << tk.value;
 			std::cout << " on line " << tk.line << "\n";
+			semanticsError = true;
 		}
 	} 
  }
