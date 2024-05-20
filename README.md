@@ -1,5 +1,5 @@
 # static_semantics
-# 4280 Project 3 Static Semantics
+# Compiler Project 3 Static Semantics
 
 ## How to run
 1. run make clean command to clean any old builds
